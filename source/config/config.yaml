@@ -1,0 +1,11 @@
+service_name: "article_hub"
+configuration_parameters:
+  - port: 5555
+  - host: 0.0.0.0
+  - debug: false
+  - scrap_service_route: "/scrapping"
+  - urls_data_scraping: {"scopus": "https://www-scopus-com.ez61.periodicos.capes.gov.br/pages/home#basic", "webofscience": "https://www-webofscience-com.ez61.periodicos.capes.gov.br/wos/woscc/basic-search", "bibdigital": "http://bibdigital.sid.inpe.br"}
+  - system_prompt: ""
+  - llm_model_path: "/app/models/qwen2.5-1.5b-instruct-q4_k_m.gguf"
+  - llm_model_repo: "Qwen/Qwen2.5-1.5B-Instruct-GGUF"
+  - llm_model_file: "qwen2.5-1.5b-instruct-q4_k_m.gguf"
