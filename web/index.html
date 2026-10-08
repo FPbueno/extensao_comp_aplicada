@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
+    <title>Artigos - Programa Queimadas</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 16px; color: #222; }
+        h1 { font-size: 1.4rem; }
+        #status { color: #666; margin-bottom: 16px; }
+        .article { border-bottom: 1px solid #ddd; padding: 14px 0; }
+        .article a { font-size: 1.05rem; font-weight: bold; color: #0b5fa5; text-decoration: none; }
+        .article a:hover { text-decoration: underline; }
+        .meta { color: #555; font-size: 0.9rem; margin-top: 4px; }
+    </style>
 </head>
 <body>
-    <h1>teste</h1>
+    <h1>Artigos do Programa Queimadas (BibDigital/INPE)</h1>
+    <div id="status">Carregando...</div>
+    <div id="articles"></div>
+
+    <script>
+        const API_URL = "http://localhost:5555/scrapping";
+
+        fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" })
+            .then(response => response.json())
+            .then(data => {
+                const statusEl = document.getElementById("status");
+                const listEl = document.getElementById("articles");
+
+                if (data.error) {
+                    statusEl.textContent = "Erro: " + data.error;
+                    return;
+                }
+
+                statusEl.textContent = data.total + " artigo(s) encontrado(s).";
+
+                data.articles.forEach(article => {
+                    const item = document.createElement("div");
+                    item.className = "article";
+                    item.innerHTML = `
+                        <a href="${article.link}" target="_blank" rel="noopener">${article.title}</a>
+                        <div class="meta">${article.authors} (${article.year || "sem ano"})</div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            })
+            .catch(err => {
+                document.getElementById("status").textContent = "Falha ao conectar na API: " + err;
+            });
+    </script>
 </body>
 </html>
