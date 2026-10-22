@@ -1,0 +1,199 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--neutral-gray-0);
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 88px;
+  padding: 0.5rem 0;
+  border-bottom: 1.5px solid var(--neutral-gray-300);
+  box-shadow: 0 4px 5px -6px rgba(0, 0, 0, 0.5);
+}
+
+.brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--institutional-blue-500);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.brand:hover {
+  color: var(--institutional-blue-600);
+}
+
+.logoInpe {
+  width: 62px;
+  height: auto;
+}
+
+.logoQueimadas {
+  width: 40px;
+  height: auto;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+  line-height: 1;
+}
+
+.brandKicker {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.brandTitle {
+  margin: -0.08em 0 0.06em;
+  font-size: calc(var(--font-size-3xl) * 1.2);
+  font-weight: var(--font-weight-bold);
+}
+
+.brandDescription {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 5px;
+  color: var(--neutral-gray-700);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.nav a:hover {
+  background: var(--neutral-gray-50);
+  color: var(--primary-color-600);
+}
+
+/* divisórias verticais entre os itens, como no portal */
+.nav a + a {
+  margin-left: 1px;
+}
+
+.nav a + a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  width: 1px;
+  height: 40px;
+  background: var(--neutral-gray-300);
+  transform: translateY(-50%);
+}
+
+.external {
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+.menuButton {
+  display: none;
+}
+
+/* mesmo ajuste do portal em telas médias */
+@media (max-width: 1200px) {
+  .nav a {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 960px) {
+  .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .brandDescription {
+    white-space: normal;
+  }
+
+  .menuButton {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    border: 1px solid var(--neutral-gray-300);
+    border-radius: 8px;
+    background: var(--neutral-gray-0);
+    color: var(--neutral-gray-700);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 240px;
+    padding: 0.5rem;
+    border: 1px solid var(--neutral-gray-300);
+    border-radius: 10px;
+    background: var(--neutral-gray-0);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav a + a::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    min-height: 72px;
+  }
+
+  .logoInpe {
+    width: 44px;
+  }
+
+  .logoQueimadas {
+    width: 28px;
+  }
+
+  .brandTitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .brandDescription {
+    font-size: var(--font-size-2xs);
+  }
+}

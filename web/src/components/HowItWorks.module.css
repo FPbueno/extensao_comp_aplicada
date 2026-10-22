@@ -1,0 +1,149 @@
+.section {
+  padding: 1rem 0 4.5rem;
+  border-top: 1px solid var(--secondary-color-100);
+  background: var(--secondary-color-50);
+}
+
+.intro {
+  max-width: 72ch;
+  margin: 0 auto 2.5rem;
+  color: var(--neutral-gray-600);
+  text-align: center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Mesmo desenho dos cards do portal: ícone grande em círculo, título e texto centralizados */
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.25rem 1.5rem 2rem;
+  border-radius: var(--card-radius);
+  background: var(--neutral-gray-0);
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.step:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.stepNumber {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-color-600);
+  color: var(--text-on-dark);
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+}
+
+.stepIcon {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background: var(--secondary-color-50);
+  color: var(--icon-color);
+  font-size: 2.75rem;
+}
+
+.step h3 {
+  margin: 0 0 0.5rem;
+  color: var(--neutral-gray-950);
+  font-size: var(--font-size-xl);
+}
+
+.step p {
+  margin: 0;
+  color: var(--neutral-gray-700);
+}
+
+.audience {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.audience h3 {
+  margin: 0 0 1rem;
+  color: var(--neutral-gray-800);
+  font-size: var(--font-size-lg);
+}
+
+.audience ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.audience li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  background: var(--neutral-gray-0);
+  box-shadow: var(--card-shadow);
+  color: var(--neutral-gray-800);
+  font-weight: var(--font-weight-bold);
+}
+
+.audience li svg {
+  color: var(--icon-color);
+}
+
+.about {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 820px;
+  margin: 3rem auto 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 5px solid var(--primary-color-500);
+  border-radius: var(--card-radius);
+  background: var(--neutral-gray-0);
+  box-shadow: var(--card-shadow);
+}
+
+.about p {
+  margin: 0;
+  color: var(--neutral-gray-700);
+}
+
+.about strong {
+  color: var(--neutral-gray-950);
+}
+
+.aboutIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--secondary-color-50);
+  color: var(--icon-color);
+  font-size: 1.4rem;
+}

@@ -57,6 +57,7 @@ class DataScraping:
                             full_metadata = self._fetch_full_metadata(article["full_metadata_url"])
                         article["authors"] = (full_metadata and full_metadata["authors"]) or article["authors"]
                         article["doi"] = full_metadata and full_metadata["doi"]
+                        article["abstract"] = full_metadata and full_metadata["abstract"]
                         if article["doi"]:
                             article["link"] = f"https://doi.org/{article['doi']}"
                         article.pop("full_metadata_url", None)
@@ -99,6 +100,7 @@ class DataScraping:
         return {
             "authors": self._extract_full_authors(soup),
             "doi": self._extract_field(soup, "DOI"),
+            "abstract": self._extract_field(soup, "Abstract"),
         }
 
     @staticmethod
@@ -123,7 +125,9 @@ class DataScraping:
                     br.replace_with("\n")
                 names = []
                 for line in value_td.get_text().split("\n"):
-                    name = re.sub(r"^\d+\s*", "", line).strip()
+                    # os índices de 1 a 9 vêm alinhados à direita (" 1 Nome"), então
+                    # o strip precisa vir antes de remover o número
+                    name = re.sub(r"^\d+\s*", "", line.strip())
                     if name:
                         names.append(name)
                 return "; ".join(names) if names else None

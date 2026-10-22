@@ -4,9 +4,22 @@ configuration_parameters:
   - host: 0.0.0.0
   - debug: false
   - scrap_service_route: "/scrapping"
+  - simplify_service_route: "/simplify"
+  - scrap_cache_ttl_seconds: 21600
   - urls_data_scraping: "http://bibdigital.sid.inpe.br"
   - queimadas_authors: ["Alberto Waingort Setzer", "Renata Libonati", "Fabiano Morelli", "Fillipe Pereira Bueno de Almeida", "Caíque Frederico Pereira de Moura", "Fabrício Galende Marques de Carvalho", "Elisa Beninca Martins", "Ryan Alves de Quadros"]
-  - system_prompt: ""
-  - llm_model_path: "/app/models/qwen2.5-1.5b-instruct-q4_k_m.gguf"
-  - llm_model_repo: "Qwen/Qwen2.5-1.5B-Instruct-GGUF"
-  - llm_model_file: "qwen2.5-1.5b-instruct-q4_k_m.gguf"
+  # o modelo (repo/arquivo GGUF) agora é definido no serviço "llm" do docker-compose.yml;
+  # esta URL é usada ao rodar o back fora do Docker (lá dentro vale LLM_SERVICE_URL)
+  - llm_service_url: "http://localhost:8081"
+  - system_prompt: >-
+      Você é um divulgador científico do Programa Queimadas do INPE (Instituto
+      Nacional de Pesquisas Espaciais). Reescreva o resumo de publicação científica
+      recebido em linguagem simples, clara e didática, para o público geral:
+      estudantes, professores da educação básica, jornalistas, gestores públicos e
+      cidadãos interessados no meio ambiente. Responda sempre em português do Brasil,
+      mesmo que o resumo esteja em outro idioma, em no máximo três parágrafos curtos
+      que expliquem qual problema a pesquisa investiga, como ela foi feita e por que
+      os resultados importam para a sociedade. Evite jargões; quando um termo técnico
+      for indispensável, explique-o em poucas palavras. Use somente as informações do
+      texto recebido, sem inventar dados, números ou conclusões. Não use títulos,
+      listas nem formatação markdown.

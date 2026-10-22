@@ -1,0 +1,58 @@
+# Hub de Divulgação Científica do Programa Queimadas
+#
+#   navegador ──> front (nginx :80) ──/api/*──> back (Flask :5555) ──> llm (llama.cpp :8080)
+#                                                     └──> BibDigital/INPE (scraping)
+#
+# Só o front precisa ser acessado pelo navegador: http://localhost:8080
+# Portas do host podem ser trocadas num arquivo .env (veja .env.example).
+
+services:
+  llm:
+    # llama.cpp server: API compatível com a da OpenAI (POST /v1/chat/completions).
+    # Na primeira subida baixa o modelo GGUF do Hugging Face para o volume llm-cache.
+    image: ghcr.io/ggml-org/llama.cpp:server-b11277
+    command:
+      - --hf-repo
+      - ${LLM_MODEL_REPO:-Qwen/Qwen2.5-1.5B-Instruct-GGUF}
+      - --hf-file
+      - ${LLM_MODEL_FILE:-qwen2.5-1.5b-instruct-q4_k_m.gguf}
+      - --ctx-size
+      - "4096"
+      - --parallel
+      - "1"
+      - --port
+      - "8080"
+    environment:
+      LLAMA_CACHE: /cache/llama.cpp
+    volumes:
+      - llm-cache:/cache/llama.cpp
+    ports:
+      - "127.0.0.1:${LLM_PORT:-8081}:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10m  # tempo para baixar e carregar o modelo
+    restart: unless-stopped
+
+  back:
+    build: ./source
+    environment:
+      LLM_SERVICE_URL: http://llm:8080
+    ports:
+      - "127.0.0.1:${BACK_PORT:-5000}:5555"
+    depends_on:
+      - llm
+    restart: unless-stopped
+
+  front:
+    build: ./web
+    ports:
+      - "${FRONT_PORT:-8080}:80"
+    depends_on:
+      - back
+    restart: unless-stopped
+
+volumes:
+  llm-cache:

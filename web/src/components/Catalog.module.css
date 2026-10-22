@@ -1,0 +1,337 @@
+.catalog {
+  padding-bottom: 4.5rem;
+}
+
+.intro {
+  max-width: 72ch;
+  margin: 0 auto 2.25rem;
+  color: var(--neutral-gray-600);
+  text-align: center;
+}
+
+/* ---------- Busca e filtros ---------- */
+
+.toolbar {
+  padding: 1.25rem;
+  border: 1px solid var(--neutral-gray-100);
+  border-radius: var(--card-radius);
+  background: var(--neutral-gray-25);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 180px);
+  gap: 0.75rem;
+}
+
+.searchField {
+  position: relative;
+}
+
+.searchField svg {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  color: var(--neutral-gray-500);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.searchField input,
+.select {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--neutral-gray-300);
+  border-radius: 10px;
+  background-color: var(--neutral-gray-0);
+  color: var(--neutral-gray-900);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.searchField input {
+  padding: 0.65rem 1rem 0.65rem 2.6rem;
+}
+
+.select {
+  padding: 0.65rem 2.25rem 0.65rem 0.9rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23616161' stroke-width='2'/%3E%3C/svg%3E");
+  background-position: right 0.85rem center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  appearance: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.searchField input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--secondary-color-500);
+  box-shadow: 0 0 0 3px var(--secondary-color-100);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--neutral-gray-200);
+  border-radius: 999px;
+  background: var(--neutral-gray-0);
+  color: var(--neutral-gray-700);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.chip svg {
+  color: var(--icon-color);
+}
+
+.chip:hover {
+  border-color: var(--primary-color-300);
+  color: var(--primary-color-700);
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--primary-color-600);
+  background: var(--primary-color-600);
+  color: var(--text-on-dark);
+}
+
+.chip[aria-pressed="true"] svg {
+  color: inherit;
+}
+
+.chipCount {
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.07);
+  font-size: var(--font-size-xs);
+}
+
+.chip[aria-pressed="true"] .chipCount {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- Resultados ---------- */
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 1.5rem 0 1rem;
+  color: var(--neutral-gray-600);
+  font-size: var(--font-size-sm);
+}
+
+.summary strong {
+  color: var(--neutral-gray-900);
+}
+
+.clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--primary-color-600);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.clear:hover {
+  background: var(--primary-color-50);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.primaryButton {
+  border: 0;
+  background: var(--primary-color-600);
+  color: var(--text-on-dark);
+}
+
+.primaryButton:hover {
+  background: var(--primary-color-700);
+}
+
+.secondaryButton {
+  border: 2px solid var(--primary-color-600);
+  background: var(--neutral-gray-0);
+  color: var(--primary-color-600);
+}
+
+.secondaryButton:hover {
+  background: var(--primary-color-600);
+  color: var(--text-on-dark);
+}
+
+.more {
+  display: flex;
+  margin: 2.5rem auto 0;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem;
+  color: var(--neutral-gray-600);
+  text-align: center;
+}
+
+.empty > svg {
+  color: var(--neutral-gray-400);
+  font-size: 2rem;
+}
+
+/* ---------- Carregando ---------- */
+
+.loadingBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--secondary-color-200);
+  border-radius: var(--card-radius);
+  background: var(--secondary-color-50);
+}
+
+.loadingBox p {
+  margin: 0;
+  color: var(--neutral-gray-700);
+  font-size: var(--font-size-sm);
+}
+
+.loadingBox .loadingTitle {
+  margin-bottom: 0.25rem;
+  color: var(--neutral-gray-900);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+}
+
+.flame {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--neutral-gray-0);
+  box-shadow: var(--card-shadow);
+  color: var(--icon-color);
+  font-size: 1.5rem;
+  animation: flicker 1.6s ease-in-out infinite;
+}
+
+.elapsed {
+  color: var(--secondary-color-700);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+}
+
+.skeletonCard {
+  height: 280px;
+  border-radius: var(--card-radius);
+  background: linear-gradient(90deg, var(--neutral-gray-50) 0%, var(--neutral-gray-100) 50%, var(--neutral-gray-50) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* ---------- Erro ---------- */
+
+.errorBox {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--primary-color-200);
+  border-radius: var(--card-radius);
+  background: var(--feedback-error-weak);
+  color: var(--neutral-gray-900);
+}
+
+.errorBox > svg {
+  margin-top: 0.2rem;
+  color: var(--feedback-error);
+  font-size: 1.5rem;
+}
+
+.errorBox p {
+  margin: 0 0 1rem;
+}
+
+.errorBox .errorTitle {
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    color: var(--primary-color-500);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

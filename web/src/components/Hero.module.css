@@ -1,0 +1,273 @@
+.hero {
+  padding-top: 1.75rem;
+}
+
+/* Faixa no estilo dos banners do portal: gradiente escuro em tons da cor primária */
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  padding: clamp(1.75rem, 5vw, 3.75rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--card-radius);
+  color: var(--text-on-dark);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(230, 150, 39, 0.42), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(207, 76, 57, 0.55), transparent 55%),
+    linear-gradient(135deg, var(--primary-color-900) 0%, var(--primary-color-800) 60%, var(--primary-color-700) 100%);
+  box-shadow: 0 18px 40px -18px rgba(41, 15, 11, 0.55);
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to right, transparent 20%, black 75%);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--secondary-color-200);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kicker svg {
+  color: var(--secondary-color-400);
+}
+
+.title {
+  margin: 0 0 1rem;
+  color: var(--text-on-dark);
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.highlight {
+  color: var(--secondary-color-300);
+}
+
+.lead {
+  max-width: 58ch;
+  margin: 0 0 2rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--font-size-lg);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 560px;
+  padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+  border-radius: 999px;
+  background: var(--neutral-gray-0);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
+}
+
+.search:focus-within {
+  outline: 3px solid var(--secondary-color-400);
+  outline-offset: 2px;
+}
+
+.searchIcon {
+  color: var(--neutral-gray-500);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--neutral-gray-900);
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.search button {
+  padding: 0.75rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary-color-600);
+  color: var(--text-on-dark);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.search button:hover {
+  background: var(--primary-color-700);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.75rem;
+  margin: 2.25rem 0 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.35rem;
+}
+
+.stat dt {
+  color: var(--secondary-color-200);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stat dd {
+  margin: 0;
+  color: var(--text-on-dark);
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.skeleton {
+  display: inline-block;
+  width: 3.5rem;
+  height: 1.75rem;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.1));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Ilustração: símbolo do programa ao centro, com ícones dos temas orbitando */
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+
+.ring {
+  position: absolute;
+  inset: 6%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: spin 90s linear infinite;
+}
+
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: 17%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.planet {
+  --angle: calc(360deg / var(--total) * var(--index));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: -31px 0 0 -31px;
+  border-radius: 50%;
+  background: var(--neutral-gray-0);
+  color: var(--icon-color);
+  font-size: 1.6rem;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.45);
+  transform: rotate(var(--angle)) translate(44cqw) rotate(calc(-1 * var(--angle)));
+}
+
+/* gira ao contrário do anel para os ícones ficarem sempre em pé */
+.planet svg {
+  animation: spin 90s linear infinite reverse;
+}
+
+.core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--neutral-gray-0);
+  box-shadow:
+    0 0 0 14px rgba(255, 255, 255, 0.07),
+    0 0 0 30px rgba(255, 255, 255, 0.04),
+    0 0 70px 10px rgba(230, 150, 39, 0.45);
+}
+
+.core img {
+  width: 46%;
+  height: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .banner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visual {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .search {
+    padding-left: 1rem;
+  }
+
+  .search button {
+    padding: 0.75rem 1rem;
+  }
+
+  .stats {
+    gap: 1.25rem 1.75rem;
+  }
+
+  .stat dd {
+    font-size: var(--font-size-2xl);
+  }
+}

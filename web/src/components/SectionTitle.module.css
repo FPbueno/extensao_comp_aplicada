@@ -1,0 +1,26 @@
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 3.5rem 0 1rem;
+}
+
+.tile::before,
+.tile::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--neutral-gray-800);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--neutral-gray-700);
+  font-size: clamp(var(--font-size-base), 3vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  white-space: nowrap;
+}

@@ -1,0 +1,92 @@
+.footer {
+  border-top: 1px solid var(--neutral-gray-200);
+  background: var(--neutral-gray-25);
+}
+
+.toggle {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: var(--neutral-gray-25);
+  color: var(--neutral-gray-600);
+  font-size: var(--font-size-xs);
+  text-align: center;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--neutral-gray-800);
+}
+
+/* aba com a setinha, acima da barra */
+.tab {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 18px;
+  margin-bottom: 1px;
+  border: 1px solid var(--neutral-gray-200);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: var(--neutral-gray-25);
+  color: var(--neutral-gray-700);
+  transform: translateX(-50%);
+}
+
+.links {
+  border-top: 1px solid var(--neutral-gray-200);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem 2.5rem;
+  padding: 1.75rem 0 2rem;
+}
+
+.columns h3 {
+  position: relative;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.4rem;
+  color: var(--neutral-gray-900);
+  font-size: var(--font-size-base);
+  text-transform: uppercase;
+}
+
+/* sublinhado laranja dos títulos do rodapé do portal */
+.columns h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 220px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--secondary-color-500);
+}
+
+.columns ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns li + li {
+  margin-top: 0.35rem;
+}
+
+.columns a {
+  color: var(--text-on-light);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+.columns a:hover {
+  text-decoration: underline;
+}
